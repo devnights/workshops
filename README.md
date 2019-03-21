@@ -7,7 +7,7 @@ https://metamask.io/
 ## How to install metamask
 https://medium.com/@followcoin/how-to-install-metamask-88cbdabc1d28
 
-## Testnet Facet (Ropsten) 
+## Testnet Faucet (Ropsten) 
 https://faucet.ropsten.be
 Get testnet ETHER to pay gasfee when deploying smart contract
 

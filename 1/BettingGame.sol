@@ -70,6 +70,8 @@ library SafeMath {
 
 contract BettingGame {
     
+    using SafeMath for uint256;
+
     address public owner;
     
     struct Bet {
@@ -80,8 +82,6 @@ contract BettingGame {
     }
     mapping(address => Bet) bets;
 
-    using SafeMath for uint256;
-    
     uint256 total_bet_amount;
     mapping(uint256 => uint256) choice_bet_amounts;
     

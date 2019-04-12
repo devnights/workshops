@@ -105,17 +105,7 @@ contract BettingGame {
     }
     
     function placeBet (uint256 _choice) public payable {
-        require (game_status == 1); // game is running
-        require (_choice > 2);
-        require (_choice <= 12);
-        require (msg.value > 0); // Must have bet amount
-        require (bets[msg.sender].initialized == false); // Cannot bet twice
         
-        Bet memory newBet = Bet(_choice, msg.value, false, true);
-        bets[msg.sender] = newBet;
-        
-        choice_bet_amounts[_choice] = choice_bet_amounts[_choice] + msg.value;
-        total_bet_amount = total_bet_amount + msg.value;
     }
     
     function endGame(uint256 _correct_choice) external onlyOwner {
@@ -124,17 +114,8 @@ contract BettingGame {
     }
     
     function payMe () public {
-        require (game_status == 2); // game is done
-        require (bets[msg.sender].initialized); // Must have a bet
-        require (bets[msg.sender].amount > 0); // More than zero
-        require (bets[msg.sender].choice == correct_choice); // chose correctly
-        require (bets[msg.sender].paid == false); // chose correctly
+
         
-        uint256 payout = bets[msg.sender].amount * total_bet_amount / choice_bet_amounts[correct_choice];
-        if (payout > 0) {
-            msg.sender.transfer(uint256(payout));
-            bets[msg.sender].paid == true; // cannot claim twice
-        }
     }
 
     function getAnswer() public view returns (uint256) {
